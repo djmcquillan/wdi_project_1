@@ -3,12 +3,12 @@ console.log('Script running');
 var die = $('.dice');
 var position = $('.board-position');
 var turn = 0;
-var blue1 = $('.blue #1');
-var blue2 = $('.blue #2');
-var blue3 = $('.blue #3');
-var green1 = $('.green #1');
-var green2 = $('.green #2');
-var green3 = $('.green #3');
+var blue1 = $('#blue1');
+var blue2 = $('#blue2');
+var blue3 = $('#blue3');
+var green1 = $('#green1');
+var green2 = $('#green2');
+var green3 = $('#green3');
 
 
 // every board position is currently clickable
@@ -35,26 +35,27 @@ function playerTurn() {
 		console.log("Turn: " + turn)
 		};
 	}
+
 // move game piece from home position to starting board position
 function homeToStart(){
 		if (die.innerHTML === 6){
 			console.log('move from home or move player on board');
 			if(turn % 2 === 0){
-				$(this).on('click',function () { 
-				console.log('clicked ' + $(this));
-				position[0].innerHTML = $(this);
-			});
-		}
+				// blue1.on('click',function () { 
+					console.log('clicked ' + blue1);
+					position[0].innerHTML = blue1;
+			// })
+			}
 			else if(turn % 2 !== 0) {
-					$(this).on('click',function() {
-					console.log('clicked ' + $(this));
-					position[14].innerHTML = $(this)
-				});
+					// green1.on('click',function() {
+					console.log('clicked ' + green1);
+					position[14].innerHTML = green1;
+				// });
 			}
 		}
 	}
 
-function moveForward() {
-
-}
+// function moveForward() {
+// 		if()
+// }
 	
