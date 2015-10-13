@@ -3,16 +3,19 @@ console.log('Script running');
 var dice = $('.dice');
 var boardPosition = document.querySelectorAll('.board-position');
 var turn = 0;
-var bluePiece = $('.blue');
-var greenPiece = $('.green');
+var bluePiece = $('[data-id = "blue"]');
+var greenPiece = $('[data-id = "green"]');
 var blueStart = $('[data-id = "slot1"]');
 var greenStart = $('[data-id = "slot15"]');
+var track = $('.track-container');
+var homeBlue = $('.blue-home');
+var homeGreen = $('.green-home');
 
 
 // function created to show roll of dice 1-6 when pressed
 dice.on('click',function(){
 	dice = Math.floor((Math.random()) * 7);
-	console.log(die);
+	console.log(dice);
 	playerTurn();
 	homeToStart();
 	moveForward();
@@ -50,12 +53,25 @@ function homeToStart(){
 	}
 
 function moveForward() {
-			
-			bluePiece.click(function(){
-				console.log('clicked blue');
-				$(this).detach();
-				// boardPosition[die].append($(this));
-				});
-			}	
+	
+	var move = boardPosition[dice];
+	// var nextMove = $(track.nextAll().eq(move));
+		console.log(move);
+			if(homeBlue.innerHTML === ''){
+				if(turn % 2 === 0){
+				bluePiece.click(function(){
+					$(this).detach();
+					// nextMove.append($(this));
+					});
+				}
+				else if(homeGreen.innerHTML === ''){
+					(turn % 2 !== 0)
+					greenPiece.click(function(){
+					$(this).detach();
+					// nextMove.append($(this));
+					});
+				}
+			}
+		}	
 
 		
