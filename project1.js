@@ -22,7 +22,7 @@ var dieValue=0;
 
 // function created to show roll of dice 1-6 when pressed
 dice.addEventListener('click', function(){
-	dice.innerHTML = Math.floor((Math.random()) * 7);
+	dice.innerHTML = 1 + Math.floor(Math.random() * 6);
 	dieValue = parseInt(dice.innerHTML, 10); 
 	blueMove = Number(bluePiece.parent().attr('data-id')) + dieValue;
 	greenMove = Number(greenPiece.parent().attr('data-id')) + dieValue;
