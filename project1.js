@@ -1,30 +1,38 @@
 
 console.log('Script running');
-var dice = $('.dice');
-var boardPosition = $('.board-position');
+var dice = document.querySelector('.dice');
+var boardPosition = document.querySelectorAll('.board-position');
+// var boardPosition = document.querySelectorAll('[data-id]');
 var turn = 0;
-var bluePiece = $('[data-id = "blue"]');
-var greenPiece = $('[data-id = "green"]');
-// var blueStart = $('[data-id = "0"]');
-// var greenStart = $('[data-id = "14"]');
-var homeBlue = $('.blue-home');
-var homeGreen = $('.green-home');
-var blueMove; 
-var greenMove; 
+var bluePiece = document.querySelectorAll("[data-id = 'blue']");
+var greenPiece = document.querySelectorAll("[data-id = 'green']");
+// var bluePiece = "<img src=http://www.clker.com/cliparts/C/9/G/X/L/h/ludo-piece-peacock-blue-hi.png>";
+// var greenPiece = "<img src=http://www.clker.com/cliparts/U/P/9/B/c/V/ludo-piece-green-th.png>";
+var homeBlue = document.querySelector('.home-blue');
+var homeGreen = document.querySelector('.home-green');
+var blueMove =0; 
+var greenMove =0; 
+var dieValue=0;
+// var positionBlue = {current: 0};
+// var positionGreen = {current:0};
 
 
 
 
 
 // function created to show roll of dice 1-6 when pressed
-dice.on('click',function(){
-	dice = Math.floor((Math.random()) * 7);
-	blueMove = Number(bluePiece.parent().attr('data-id')) + dice;
-	greenMove = Number(greenPiece.parent().attr('data-id')) + dice;
-	console.log(dice);
+dice.addEventListener('click',function(){
+	dice.innerHTML = Math.floor((Math.random()) * 7);
+	dieValue = parseInt(dice.innerHTML, 10); 
+	// blueMove = Number(bluePiece.parent().attr('data-id')) + dice;
+	// greenMove = Number(greenPiece.parent().attr('data-id')) + dice;
+	console.log(dieValue);
 	playerTurn();
 	homeToStart();
-	moveForward();
+// if((homeBlue.innerHTML === "") || (homeGreen.innerHTML === "")){
+	// moveForward();
+// }
+
 });
 
  // decide which player's turn it is, when turn is even blue player is up, when turn is odd green player is up
@@ -41,29 +49,44 @@ function playerTurn() {
 
 // move game piece from home position to starting board position
 function homeToStart(){
-		if (dice === 6){
+	if(dice.innerHTML === "6"){
 			if(turn % 2 === 0){
-				boardPosition.eq(0).append(bluePiece);
+				boardPosition[0].innerHTML = bluePiece;
+				homeBlue.innerHTML = "";
 					}
 			else if(turn % 2 !== 0){
-				boardPosition.eq(14).append(greenPiece);
+				
+				boardPosition[14].innerHTML = greenPiece;
+				homeGreen.innerHTML = "";
 					}	
-			}
-		}
+				}
+			}	
 
-function moveForward() {
-			if(homeBlue.innerHTML === ''){
-				if(turn % 2 === 0){
-					bluePiece.parent().attr('data-id') 
-				// boardPosition.eq(blueMove).append(bluePiece);
-				}
-				else if(homeGreen.innerHTML === ''){
-					if(turn % 2 !==0){
-						boardPosition.eq(greenMove).append(greenPiece);
-					}
-				}
-			}
-		}
+// function moveForward() {
+// 		console.log('moveForward')
+// 		for (var i = Things.length - 1; i >= 0; i--) {
+// 			Things[i]
+// 		};
+// 			if(turn % 2 === 0){
+			
+// 		}
+// 		else if(turn % 2 !== 0){
+			
+			
+// 		}
+// 	}
+		// boardPosition.eq(blueMove).append(bluePiece);
+		
+
+			// else if(homeGreen.innerHTML === ""){
+			// 			boardPosition.eq(greenMove).append(greenPiece);
+			// 			console.log('appending worked')
+			// 		}
+		
+				
+
+			
+			
 			
 
 		
