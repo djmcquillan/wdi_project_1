@@ -1,0 +1,45 @@
+.board-container {
+	text-align: center;
+	height:3000px;
+	width: 3000px;
+	border: 1px solid black;
+	background-color: rgb(213, 213, 213);
+	position: relative;
+}
+
+body { 
+	padding: 2em; 
+}
+.dice {
+	width: 100px;
+	height:100px;
+	border: 1px solid black;
+	border-radius: 10px;
+	color: black;
+	background-color: white;
+	margin: 0 auto;
+	position: absolute;
+	left: 1500px; 
+	top: 1500px;
+	font-size:50px;
+}
+
+.board-position{
+	height:150px;
+	width:150px;
+	border-radius: 50px;
+	background-color: gray;
+	position: absolute;
+	/*display: inline-block;*/
+}
+#crosshair-x { 
+	width: 600px; height: 1px; background: #000; position: absolute; left: 0; top: 300px;
+	 }
+#crosshair-y { 
+	width: 1px; height: 600px; background: #000; position: absolute; left: 300px; top: 0; 
+}
+
+
+
+
+÷

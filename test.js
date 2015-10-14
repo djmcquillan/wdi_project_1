@@ -1,4 +1,3 @@
-
 console.log('Script running');
 var dice = document.querySelector('.dice');
 var boardPosition = $('.board-position');
@@ -11,9 +10,6 @@ var startGame = document.querySelector('.start-game');
 var blueMove =0; 
 var greenMove =0; 
 var dieValue=0;
-var container = $('.board-container')
-var width = container.width()
-var height = container.height()
 var player1 = document.querySelector(".player1");
 var player2 = document.querySelector(".player2");
 
@@ -28,11 +24,12 @@ var player2 = document.querySelector(".player2");
 //     player2.innerHTML = ("Player2: " + player2);
 // }
 // })
-
-function boardLayout() {
-    var radius = 250;
-        angle = 0, step = (2*Math.PI) / boardPosition.length;
-    boardPosition.each(function() {
+function distributeFields() {
+    var radius = 1000;
+    var fields = $('.board-position'), container = $('.board-container'),
+        width = container.width(), height = container.height(),
+        angle = 0, step = (2*Math.PI) / fields.length;
+    fields.each(function() {
         var x = Math.round(width/2 + radius * Math.cos(angle) - $(this).width()/2);
         var y = Math.round(height/2 + radius * Math.sin(angle) - $(this).height()/2);
         if(window.console) {
@@ -45,7 +42,7 @@ function boardLayout() {
         angle += step;
     });
 }
-boardLayout();
+distributeFields();
 
 
 // function created to show roll of dice 1-6 when pressed
