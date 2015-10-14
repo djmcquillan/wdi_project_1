@@ -1,11 +1,16 @@
 
 .board-container {
-	text-align: center;
+	margin: 0 auto;
 	height:750px;
 	width: 750px;
 	border: 1px solid black;
 	background-color: rgb(213, 213, 213);
 	position: relative;
+}
+
+.header{
+	font-size: 28px;
+	text-align: center;
 }
 
 .dice {
@@ -23,11 +28,13 @@
 }
 
 .board-position{
-	
+
 	height:50px;
 	width:50px;
 	border-radius: 50%;
 	background-color: gray;
+	text-align: center;
+	font-size: 12px;
 	position: absolute;
 }
 

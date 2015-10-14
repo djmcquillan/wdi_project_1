@@ -1,5 +1,6 @@
 
 console.log('Script running');
+var header = $('.header')
 var dice = document.querySelector('.dice');
 var boardPosition = $('.board-position');
 var turn = 0;
@@ -28,7 +29,7 @@ var player2 = document.querySelector(".player2");
 //     player2.innerHTML = ("Player2: " + player2);
 // }
 // })
-
+// boardLayout function is used to set up the board in a circle.  Each board-position element is given a position relative to the center point
 function boardLayout() {
     var radius = 250;
         angle = 0, step = (2*Math.PI) / boardPosition.length;
@@ -57,6 +58,8 @@ dice.addEventListener('click', function(){
 	console.log(dice);
 	playerTurn();
 	homeToStart();
+
+	// only run the move forward function if pieces are out of home
 if((homeBlue.innerHTML === "") || (homeGreen.innerHTML === "")){
 	moveForward();
 }
@@ -64,6 +67,7 @@ if((homeBlue.innerHTML === "") || (homeGreen.innerHTML === "")){
 });
 
  // decide which player's turn it is, when turn is even blue player is up, when turn is odd green player is up
+// this function needs improvement, player should roll again if they roll a 6, currently this is acting as strictly a turn counter
 function playerTurn() {
 	if (turn % 2 === 0){
 		turn += 1;
@@ -75,7 +79,7 @@ function playerTurn() {
 		};
 	}
 
-// move game piece from home position to starting board position
+// move game piece from home position to starting board position, and set home position to empty
 function homeToStart(){
 	if(dice.innerHTML === "6"){
 			if(turn % 2 === 0){
@@ -89,6 +93,9 @@ function homeToStart(){
 				}
 			}	
 
+// move forward function takes the number rolled and adds it to the data-id value of the parent of the gamepiece.  
+// This value is equal to the data-id of where the gamepiece is being appended
+
 function moveForward() {
 		console.log('moveForward')
 	if(turn % 2 === 0){
@@ -98,8 +105,9 @@ function moveForward() {
 		boardPosition.eq(greenMove).append(greenPiece);
 		}
 		backToStart();
+		winner();
 	}
-
+// the backToStartfunction sends gamepiece back to the start if it is 'landed on' by opposing gamepiece
 	function backToStart() {
 		if(turn % 2 === 0){
 			if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
@@ -114,9 +122,16 @@ function moveForward() {
 
 	}
 
-	// function winner {
-
-	// }
+	function winner () {
+		if (bluePiece.parent().attr('data-id') === "28"){
+			alert("Blue Player Wins! Press Okay to play again.")
+			location.reload();
+		}
+		else if(greenPiece.parent().attr('data-id') === "28"){
+			alert("Green Player Wins! Press okay to play again.")
+			location.reload();
+		}
+	}
 		
 		
 
