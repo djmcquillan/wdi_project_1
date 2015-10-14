@@ -65,18 +65,30 @@ function moveForward() {
 		console.log('moveForward')
 	if(turn % 2 === 0){
 		boardPosition.eq(blueMove).append(bluePiece);
+		}
+		else if(turn % 2 !== 0){
+		boardPosition.eq(greenMove).append(greenPiece);
+		}
+		backToStart();
+	}
+
+	function backToStart() {
+		if(turn % 2 === 0){
 			if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
 				boardPosition.eq(0).append(greenPiece);
 			}
 		}
-		else if(turn % 2 !== 0){
-			boardPosition.eq(greenMove).append(greenPiece);
-			if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
+			else if(turn % 2 !== 0){
+				if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
 				boardPosition.eq(0).append(bluePiece);
 			}
 		}
 
 	}
+
+	// function winner {
+
+	// }
 		
 		
 
