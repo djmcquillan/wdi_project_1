@@ -55,7 +55,7 @@ function homeToStart(){
 				homeBlue.innerHTML = "";
 					}
 			else if(turn % 2 !== 0){
-				boardPosition.eq(14).append(greenPiece);
+				boardPosition.eq(0).append(greenPiece);
 				homeGreen.innerHTML = "";
 					}	
 				}
@@ -65,19 +65,21 @@ function moveForward() {
 		console.log('moveForward')
 	if(turn % 2 === 0){
 		boardPosition.eq(blueMove).append(bluePiece);
+			if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
+				boardPosition.eq(0).append(greenPiece);
+			}
 		}
 		else if(turn % 2 !== 0){
 			boardPosition.eq(greenMove).append(greenPiece);
+			if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
+				boardPosition.eq(0).append(bluePiece);
+			}
 		}
+
 	}
 		
 		
 
-			// else if(homeGreen.innerHTML === ""){
-			// 			
-			// 			console.log('appending worked')
-			// 		}
-		
 				
 
 			
