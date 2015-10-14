@@ -12,7 +12,8 @@ var startGame = document.querySelector('.start-game');
 var blueMove =0; 
 var greenMove =0; 
 var dieValue=0;
-var container = $('.board-container')
+var container = $('.board-container');
+var trackContainer = $('.track-container');
 var width = container.width()
 var height = container.height()
 var player1 = document.querySelector(".player1");
@@ -47,6 +48,18 @@ function boardLayout() {
     });
 }
 boardLayout();
+
+  $('.modal').hide();
+    $(document).ready(function(){
+        $('.modal').fadeIn(1000);
+        trackContainer.fadeOut(1000);
+
+    });
+
+    $('button').on('click', function(){
+        $('.modal').fadeOut(1000);
+        trackContainer.fadeIn(1000);
+    })
 
 
 // function created to show roll of dice 1-6 when pressed

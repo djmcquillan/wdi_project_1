@@ -8,6 +8,38 @@
 	position: relative;
 }
 
+.modal{
+	margin: 0 auto;
+	height:500px;
+	width:500px;
+	border: 1px solid blue;
+	text-align: center;
+	background: blue;
+  	background:rgba(255,255,255,0.5);
+  	border-radius: 50%;
+}
+
+.input-player-1{
+	margin-top:100px;
+	text-align: center;
+	height:25px;
+	font-size:18px;
+	border-radius:15px;
+}
+
+.input-player-2{
+	margin-top:25px;
+	height:25px;
+	font-size:18px;
+	border-radius:15px;
+}
+
+.button{
+	margin-top:25px;
+	font-size:22px;
+	border-radius: 10px;
+}
+
 .header{
 	font-size: 28px;
 	text-align: center;
