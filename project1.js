@@ -13,12 +13,28 @@ var homeGreen = document.querySelector('.home-green');
 var blueMove =0; 
 var greenMove =0; 
 var dieValue=0;
-// var positionBlue = {current: 0};
-// var positionGreen = {current:0};
+var player1;
+var player2;
 
 
+function player1Name() {
+     player1 = prompt("Player 1, please enter your name", "Type name here");
+    
+    if (player1 != null) {
+        document.getElementsByClassName("player1").innerHTML =
+        "Player 1: " + player1;
+    }
+}
 
+function player2Name() {
+     player2 = prompt("Player 2, please enter your name", "Type name here");
+    
+    if (player2 != null) {
+        document.getElementsByClassName("player1").innerHTML =
+        "Player 2: " + player2;
+    }
 
+}
 
 // function created to show roll of dice 1-6 when pressed
 dice.addEventListener('click', function(){
