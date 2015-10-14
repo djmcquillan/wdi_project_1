@@ -1,11 +1,11 @@
 
 console.log('Script running');
 var dice = document.querySelector('.dice');
-var boardPosition = document.querySelectorAll('.board-position');
+var boardPosition = $('.board-position');
 // var boardPosition = document.querySelectorAll('[data-id]');
 var turn = 0;
-var bluePiece = document.querySelectorAll("[data-id = 'blue']");
-var greenPiece = document.querySelectorAll("[data-id = 'green']");
+var bluePiece = $("[data-id = 'blue']");
+var greenPiece = $("[data-id = 'green']");
 // var bluePiece = "<img src=http://www.clker.com/cliparts/C/9/G/X/L/h/ludo-piece-peacock-blue-hi.png>";
 // var greenPiece = "<img src=http://www.clker.com/cliparts/U/P/9/B/c/V/ludo-piece-green-th.png>";
 var homeBlue = document.querySelector('.home-blue');
@@ -21,17 +21,17 @@ var dieValue=0;
 
 
 // function created to show roll of dice 1-6 when pressed
-dice.addEventListener('click',function(){
+dice.addEventListener('click', function(){
 	dice.innerHTML = Math.floor((Math.random()) * 7);
 	dieValue = parseInt(dice.innerHTML, 10); 
-	// blueMove = Number(bluePiece.parent().attr('data-id')) + dice;
-	// greenMove = Number(greenPiece.parent().attr('data-id')) + dice;
-	console.log(dieValue);
+	blueMove = Number(bluePiece.parent().attr('data-id')) + dieValue;
+	greenMove = Number(greenPiece.parent().attr('data-id')) + dieValue;
+	console.log(dice);
 	playerTurn();
 	homeToStart();
-// if((homeBlue.innerHTML === "") || (homeGreen.innerHTML === "")){
-	// moveForward();
-// }
+if((homeBlue.innerHTML === "") || (homeGreen.innerHTML === "")){
+	moveForward();
+}
 
 });
 
@@ -51,35 +51,30 @@ function playerTurn() {
 function homeToStart(){
 	if(dice.innerHTML === "6"){
 			if(turn % 2 === 0){
-				boardPosition[0].innerHTML = bluePiece;
+				boardPosition.eq(0).append(bluePiece);
 				homeBlue.innerHTML = "";
 					}
 			else if(turn % 2 !== 0){
-				
-				boardPosition[14].innerHTML = greenPiece;
+				boardPosition.eq(14).append(greenPiece);
 				homeGreen.innerHTML = "";
 					}	
 				}
 			}	
 
-// function moveForward() {
-// 		console.log('moveForward')
-// 		for (var i = Things.length - 1; i >= 0; i--) {
-// 			Things[i]
-// 		};
-// 			if(turn % 2 === 0){
-			
-// 		}
-// 		else if(turn % 2 !== 0){
-			
-			
-// 		}
-// 	}
-		// boardPosition.eq(blueMove).append(bluePiece);
+function moveForward() {
+		console.log('moveForward')
+	if(turn % 2 === 0){
+		boardPosition.eq(blueMove).append(bluePiece);
+		}
+		else if(turn % 2 !== 0){
+			boardPosition.eq(greenMove).append(greenPiece);
+		}
+	}
+		
 		
 
 			// else if(homeGreen.innerHTML === ""){
-			// 			boardPosition.eq(greenMove).append(greenPiece);
+			// 			
 			// 			console.log('appending worked')
 			// 		}
 		
