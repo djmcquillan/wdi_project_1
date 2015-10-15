@@ -10,6 +10,7 @@ var cop = $("[data-id = 'cop']");
 var copPosition = Math.floor((Math.random()) * 27);
 var homeBlue = document.querySelector('.home-blue');
 var homeGreen = document.querySelector('.home-green');
+var homeCop = document.querySelector('.home-cop');
 var startGame = document.querySelector('.start-game');
 var blueMove =0; 
 var greenMove =0; 
