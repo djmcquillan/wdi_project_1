@@ -68,9 +68,9 @@ dice.addEventListener('click', function(){
 	homeToStart();
 
 	// only run the move forward function if pieces are out of home
-// if((homeBlue.innerHTML === "") || (homeGreen.innerHTML === "")){
+if((homeBlue.innerHTML === "") || (homeGreen.innerHTML === "")){
 	moveForward();
-// }
+}
 
 });
 
@@ -94,11 +94,11 @@ function homeToStart(){
 	if(dice.innerHTML === "6"){
 			if(turn % 2 === 0){
 				boardPosition.eq(0).append(bluePiece);
-				// homeBlue.innerHTML = "";
+				homeBlue.innerHTML = "";
 					}
 			else if(turn % 2 !== 0){
 				boardPosition.eq(0).append(greenPiece);
-				// homeGreen.innerHTML = "";
+				homeGreen.innerHTML = "";
 					}	
 				}
 			}	
