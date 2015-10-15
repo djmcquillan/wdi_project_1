@@ -58,6 +58,9 @@ boardLayout();
 
     $('button').on('click', function(){
         $('.modal').fadeOut(1000);
+        console.log(player1);
+        player1.innerHTML = document.querySelector('.input-player-1').value;
+        player2.innerHTML = document.querySelector('.input-player-2').value;
         trackContainer.fadeIn(1000);
     })
 
