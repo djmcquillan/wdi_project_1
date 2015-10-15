@@ -64,6 +64,11 @@
 	color:black;
 }
 
+.game-time {
+	position:absolute;
+	left:325px;
+	top:200px;
+}
 .player1 {
 	position: absolute;
 	left:50px;

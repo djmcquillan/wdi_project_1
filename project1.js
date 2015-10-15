@@ -19,6 +19,8 @@ var height = container.height()
 var player1 = document.querySelector('.player1');
 var player2 = document.querySelector('.player2');
 var whosMove = document.querySelector('.player-turn');
+// var gameTime = $('.game-time');
+// var game = {score:0, elapsedTime:0, currentPosition: 0};
 
 
 // boardLayout function is used to set up the board in a circle.  Each board-position element is given a position relative to the center point
@@ -73,6 +75,15 @@ if((homeBlue.innerHTML === "") || (homeGreen.innerHTML === "")){
 }
 
 });
+
+// setInterval(function(){
+//       game.elapsedTime = game.elapsedTime + 1;
+//       gameTime.text("Game Time: " + game.elapsedTime)
+//       $(boardPosition[game.currentBox]).html("");
+
+//       game.currentBox = Math.floor((Math.random()) * 28);
+//       $(boardPosition[game.currentBox]).html("<p>cop</p>");
+//       }, 1000);
 
  // decide which player's turn it is, when turn is even blue player is up, when turn is odd green player is up
 // this function needs improvement, player should roll again if they roll a 6, currently this is acting as strictly a turn counter
