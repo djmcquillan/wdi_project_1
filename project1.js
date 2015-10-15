@@ -16,20 +16,11 @@ var container = $('.board-container');
 var trackContainer = $('.track-container');
 var width = container.width()
 var height = container.height()
-var player1 = document.querySelector(".player1");
-var player2 = document.querySelector(".player2");
+var player1 = document.querySelector('.player1');
+var player2 = document.querySelector('.player2');
+var whosMove = document.querySelector('.player-turn');
 
 
-// startGame.addEventListener('click', function() {
-//  prompt("Player 1 enter your name", "Enter name here");
-// if (player1 != null) {
-//     player1.innerHTML = ("Player1: " + player1);
-// }
-//  prompt("Player 2 enter your name", "Enter name here");
-// if (player1 != null) {
-//     player2.innerHTML = ("Player2: " + player2);
-// }
-// })
 // boardLayout function is used to set up the board in a circle.  Each board-position element is given a position relative to the center point
 function boardLayout() {
     var radius = 250;
@@ -49,11 +40,11 @@ function boardLayout() {
 }
 boardLayout();
 
-  $('.modal').hide();
+
+$('.modal').hide();
     $(document).ready(function(){
         $('.modal').fadeIn(1000);
         trackContainer.fadeOut(1000);
-
     });
 
     $('button').on('click', function(){
@@ -61,6 +52,7 @@ boardLayout();
         console.log(player1);
         player1.innerHTML = document.querySelector('.input-player-1').value;
         player2.innerHTML = document.querySelector('.input-player-2').value;
+        whosMove.innerHTML = document.querySelector('.input-player-1').value + " is up!";
         trackContainer.fadeIn(1000);
     })
 
@@ -71,14 +63,14 @@ dice.addEventListener('click', function(){
 	dieValue = parseInt(dice.innerHTML, 10); 
 	blueMove = Number(bluePiece.parent().attr('data-id')) + dieValue;
 	greenMove = Number(greenPiece.parent().attr('data-id')) + dieValue;
-	console.log(dice);
+	// console.log(dice);
 	playerTurn();
 	homeToStart();
 
 	// only run the move forward function if pieces are out of home
-if((homeBlue.innerHTML === "") || (homeGreen.innerHTML === "")){
+// if((homeBlue.innerHTML === "") || (homeGreen.innerHTML === "")){
 	moveForward();
-}
+// }
 
 });
 
@@ -87,10 +79,12 @@ if((homeBlue.innerHTML === "") || (homeGreen.innerHTML === "")){
 function playerTurn() {
 	if (turn % 2 === 0){
 		turn += 1;
+		whosMove.innerHTML = document.querySelector('.input-player-1').value + " is up!" ;
 		console.log("Turn: " + turn);
 		}
 	else {
 		turn += 1;
+		whosMove.innerHTML = document.querySelector('.input-player-2').value + " is up!";
 		console.log("Turn: " + turn);
 		};
 	}
@@ -100,11 +94,11 @@ function homeToStart(){
 	if(dice.innerHTML === "6"){
 			if(turn % 2 === 0){
 				boardPosition.eq(0).append(bluePiece);
-				homeBlue.innerHTML = "";
+				// homeBlue.innerHTML = "";
 					}
 			else if(turn % 2 !== 0){
 				boardPosition.eq(0).append(greenPiece);
-				homeGreen.innerHTML = "";
+				// homeGreen.innerHTML = "";
 					}	
 				}
 			}	
@@ -127,12 +121,14 @@ function moveForward() {
 	function backToStart() {
 		if(turn % 2 === 0){
 			if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
-				boardPosition.eq(0).append(greenPiece);
+				$(homeGreen).append(greenPiece);
+				alert("You have been bounced back to the home position!");
 			}
 		}
 			else if(turn % 2 !== 0){
 				if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
-				boardPosition.eq(0).append(bluePiece);
+				$(homeBlue).append(bluePiece);
+				alert("You have been bounced back to the starting position!");
 			}
 		}
 
