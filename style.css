@@ -20,53 +20,78 @@
 	border: 1px solid blue;
 	text-align: center;
 	background-image: url("https://www.colourbox.com/preview/2826035-captured-danger-prisoner-in-cartoon-style-for-justice-design.jpg");
+  	background-repeat: no-repeat;
   	border-radius: 50%;
+  	position: relative;
 }
 
-.modal p {
+.instruction-modal p {
 	text-align: center;
-	background-color: black;
-	font-size:16px;
-	color:white;
-}
-
-.modal h3 {
-	margin: 0 auto;
-	margin-top: 25px;
-	width: 100px;
-	background-color: black;
-	color: white;
+	background-color: #C0C0C0;
+	font-size:22px;
+	color:black;
+	font-weight: bold;
+	border-radius: 15px;
+	position:absolute;
+	bottom: 50px;
 }
 
 .input-player-1{
-	margin-top:200px;
-	margin-right: 350px;
+	top:350px;
+	right: 375px;
 	text-align: center;
-	height:25px;
-	font-size:18px;
-	border-radius:15px;
+	height:32px;
+	font-size:22px;
+	border-radius:10px;
 	background-color: white;
 	color: black;
-	display: inline-block;
+	position: absolute;
+	font-weight: bold;
 }
 
 .input-player-2{
 	text-align: center;
-	margin-left:350px;
-	height:25px;
-	font-size:18px;
-	border-radius:15px;
+	top:350px;
+	left:375px;
+	height:32px;
+	font-size:22px;
+	border-radius:10px;
 	background-color: white;
 	color: black;
-	display:inline-block;
+	position:absolute;
+	font-weight: bold;
 }
 
-.button{
-	margin-top:100px;
+.player-button{
+	top:400px;
+	left:150px;
 	font-size:22px;
 	border-radius: 10px;
 	background-color: white;
 	color:black;
+	position: absolute;
+	font-weight: bold;
+	
+}
+
+.instruction-button{
+	top:450px;
+	left:200px;
+	font-size:22px;
+	border-radius: 10px;
+	background-color: white;
+	color:black;
+	position: absolute;
+	font-weight: bold;
+
+}
+
+.hide-instruction-button{
+	font-size:22px;
+	border-radius: 10px;
+	background-color: white;
+	color:black;
+	font-weight: bold;
 }
 
 .game-time {

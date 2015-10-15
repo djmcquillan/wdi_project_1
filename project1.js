@@ -46,12 +46,18 @@ boardLayout();
 
 
 $('.modal').hide();
+$('.instruction-modal').hide();
     $(document).ready(function(){
         $('.modal').fadeIn(1000);
         trackContainer.fadeOut(1000);
     });
-
-    $('button').on('click', function(){
+    $('.instruction-button').on('click', function(){
+    	$('.instruction-modal').show();
+    });
+    $('.hide-instruction-button').on('click', function() {
+    	$('.instruction-modal').hide();
+    });
+    $('.player-button').on('click', function(){
         $('.modal').fadeOut(1000);
         console.log(player1);
         player1.innerHTML = document.querySelector('.input-player-1').value;
