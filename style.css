@@ -38,12 +38,14 @@
 	position: absolute;
 	left:50px;
 	top: 50px;
+	font-size:22px;
 }
 
 .player2 {
 	position: absolute;
 	right:50px;
 	top: 50px;
+	font-size:22px;
 }
 
 
@@ -89,8 +91,8 @@
 	width:50px;
 	border-radius: 50%;
 	border:1px solid black;
-	top: 350px;
-	left: 525px;
+	top: 100px;
+	left: 50px;
 	position: absolute;
 }
 .home-green {
@@ -98,8 +100,8 @@
 	width:50px;
 	border-radius: 50%;
 	border:1px solid black;
-	top: 350px;
-	left: 675px;
+	top: 100px;
+	right: 50px;
 	position: absolute;
 }
 
