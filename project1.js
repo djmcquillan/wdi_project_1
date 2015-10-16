@@ -62,7 +62,7 @@ $('.instruction-modal').hide();
         console.log(player1);
         player1.innerHTML = inputPlayer1.value;
         player2.innerHTML = inputPlayer2.value;
-        whosMove.innerHTML = inputPlayer1.value + " is up!";
+        whosMove.innerHTML = inputPlayer1.value + " its your turn!";
         trackContainer.fadeIn(1000);
 
     	setInterval(function(){
@@ -78,7 +78,7 @@ dice.addEventListener('click', function(){
 	dieValue = parseInt(dice.innerHTML, 10);
 	playerTurn();	
 
-	if (turn % 2 === 0){
+	if (turn % 2 !== 0){
 		//smiley's turn
 		if (homeGreen.innerHTML !== ""){
 			//if smiley is home
@@ -125,12 +125,12 @@ dice.addEventListener('click', function(){
 function playerTurn() {
 	if (turn % 2 === 0){
 		turn += 1;
-		whosMove.innerHTML = inputPlayer2.value + " is up!" ;
+		whosMove.innerHTML = inputPlayer1.value + " its your turn!" ;
 		console.log("Turn: " + turn);
 		}
 	else {
 		turn += 1;
-		whosMove.innerHTML = inputPlayer1.value + " is up!";
+		whosMove.innerHTML = inputPlayer2.value + " its your turn!";
 		console.log("Turn: " + turn);
 		};
 	}
@@ -154,13 +154,13 @@ function backToStart() {
 			alert("You've been busted and brought back to jail!");
 	}
 
-	else if(turn % 2 === 0){
+	else if(turn % 2 !== 0){
 		if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
 			$(homeBlue).append(bluePiece);
 			alert("You were ratted out and sent back to jail!");
 		}
 	}
-	else if(turn % 2 !== 0){
+	else if(turn % 2 === 0){
 			if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
 			$(homeGreen).append(greenPiece);
 			alert("You were ratted out and sent back to jail!");

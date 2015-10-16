@@ -92,11 +92,12 @@
 	font-weight: bold;
 }
 
-.game-time {
+/*.game-time {
 	position:absolute;
 	left:325px;
 	top:200px;
-}
+}*/
+
 .player1 {
 	position: absolute;
 	left:50px;
@@ -127,9 +128,10 @@
 }
 
 .player-turn{
+	font-weight: bold;
 	font-size:28px;
 	position: absolute;
-	top:250px;
+	top:300px;
 	left:300px;
 }
 
