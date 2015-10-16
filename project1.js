@@ -140,30 +140,31 @@ function playerTurn() {
 function moveForward(move, piece) {
 	console.log('moveForward');
 	boardPosition.eq(move).append(piece);
+	backToStart();
 	winner();	
 }
 // the backToStartfunction sends gamepiece back to the start if it is 'landed on' by opposing gamepiece or floating cop piece
 function backToStart() {
+	if(cop.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
+			$(homeBlue).append(bluePiece);
+			alert("You've been busted and brought back to jail!");
+	}
+	if(cop.parent().attr('data-id') === greenPiece.parent().attr('data-id')){
+			$(homeGreen).append(greenPiece);
+			alert("You've been busted and brought back to jail!");
+	}
+
 	if(turn % 2 === 0){
 		if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
 			$(homeBlue).append(bluePiece);
 			alert("You were ratted out and sent back to jail!");
-		}
-		if(cop.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
-			$(homeGreen).append(greenPiece);
-			alert("You've been busted and brought back to jail!");
 		}
 	}
 	else if(turn % 2 !== 0){
 			if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
 			$(homeGreen).append(greenPiece);
 			alert("You were ratted out and sent back to jail!");
-		}
-		if(cop.parent().attr('data-id') === greenPiece.parent().attr('data-id')){
-			$(homeBlue).append(bluePiece);
-			alert("You've been busted and brought back to jail!");
-		}
-
+			}
 		}
 	}	
 
