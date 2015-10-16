@@ -3,7 +3,7 @@ console.log('Script running');
 var header = $('.header')
 var dice = document.querySelector('.dice');
 var boardPosition = $('.board-position');
-var turn = 0;
+var turn = 1;
 var bluePiece = $("[data-id = 'blue']");
 var greenPiece = $("[data-id = 'green']");
 var cop = $("[data-id = 'cop']");
@@ -12,7 +12,7 @@ var homeBlue = document.querySelector('.home-blue');
 var homeGreen = document.querySelector('.home-green');
 var homeCop = document.querySelector('.home-cop');
 var startGame = document.querySelector('.start-game');
-var blueMove =0; 
+var blueMove = 0; 
 var greenMove =0; 
 var dieValue=0;
 var container = $('.board-container');
@@ -22,23 +22,20 @@ var height = container.height()
 var player1 = document.querySelector('.player1');
 var player2 = document.querySelector('.player2');
 var whosMove = document.querySelector('.player-turn');
-var gameTime = $('.game-time');
+// var gameTime = $('.game-time');
 var inputPlayer1 = document.querySelector('.input-player-1');
 var inputPlayer2 = document.querySelector('.input-player-2');
-var bluePositionValue;
-var greenPositionValue;
 
 
 // boardLayout function is used to set up the board in a circle.  Each board-position element is given a position relative to the center point
 function boardLayout() {
     var radius = 250;
-        angle = 0, step = (2*Math.PI) / boardPosition.length;
+    var angle = 86.5;
+    var step = (2*Math.PI) / boardPosition.length;
     boardPosition.each(function() {
         var x = Math.round(width/2 + radius * Math.cos(angle) - $(this).width()/2);
         var y = Math.round(height/2 + radius * Math.sin(angle) - $(this).height()/2);
-        if(window.console) {
-            console.log($(this).text(), x, y);
-        }
+       
         $(this).css({
             left: x + 'px',
             top: y + 'px'
@@ -71,23 +68,51 @@ $('.instruction-modal').hide();
     })
 
 
-// function created to show roll of dice 1-6 when pressed
+// function created to show roll of dice 1-6 when pressed, movement around board is based on the roll of the dice
 dice.addEventListener('click', function(){
 	dice.innerHTML = 1 + Math.floor(Math.random() * 6);
 	dieValue = parseInt(dice.innerHTML, 10);
-	bluePositionValue = Number(bluePiece.parent().attr('data-id'));
-	greenPositionValue = Number(bluePiece.parent().attr('data-id'));
-	blueMove = bluePositionValue + dieValue;
-	greenMove = greenPositionValue + dieValue;
-	console.log(bluePositionValue, greenPositionValue,blueMove,greenMove);
-	playerTurn();
-	homeToStart();
+	// blueMove = Number(bluePiece.parent().attr('data-id')) + dieValue;
+	// greenMove = Number(greenPiece.parent().attr('data-id')) + dieValue;
+	playerTurn();	
 
-	// only run the move forward function if pieces are out of home
-if((homeBlue.innerHTML === "") || (homeGreen.innerHTML === "")){
-	moveForward();
+	if (turn % 2 === 0){
+		//smiley's turn
+		if (homeGreen.innerHTML !== ""){
+			//if smiley is home
+			if(dieValue === 6){
+				//dice has to equal 6 before we move smiley
+				boardPosition.eq(0).append(greenPiece);
+				homeGreen.innerHTML = "";			
+			}
+		} else {
+			// smiley's not home
+			greenMove = Number(greenPiece.parent().attr('data-id')) + dieValue;
+			if (greenMove > boardPosition.length){
+				alert("You must land exactly at the safe house!");
+			} else {
+				moveForward(greenMove, greenPiece);
+			}
+		} 
+	} else {
+		//frownie's turn
+		if (homeBlue.innerHTML !== "") {
+			//frownie's home
+			if(dieValue === 6){
+				boardPosition.eq(0).append(bluePiece);
+				homeBlue.innerHTML = "";	
+			}
+		} else {
+			//frownie's not home
+			blueMove = Number(bluePiece.parent().attr('data-id')) + dieValue;
+			if (blueMove > boardPosition.length){
+				alert("You must land exactly at the safe house!");
+			} else {
+				moveForward(blueMove, bluePiece);
+			}
 		}
-	});
+	};
+});
 // 	setInterval(function(){
 // 	boardPosition.eq(copPosition).append(cop);
 //   }, 1000);
@@ -96,115 +121,53 @@ if((homeBlue.innerHTML === "") || (homeGreen.innerHTML === "")){
 
 
  // decide which player's turn it is, when turn is even blue player is up, when turn is odd green player is up
-// this function needs improvement, player should roll again if they roll a 6, currently this is acting as strictly a turn counter
 function playerTurn() {
 	if (turn % 2 === 0){
 		turn += 1;
-		whosMove.innerHTML = inputPlayer1.value + " is up!" ;
+		whosMove.innerHTML = inputPlayer2.value + " is up!" ;
 		console.log("Turn: " + turn);
 		}
 	else {
 		turn += 1;
-		whosMove.innerHTML = inputPlayer2.value + " is up!";
+		whosMove.innerHTML = inputPlayer1.value + " is up!";
 		console.log("Turn: " + turn);
 		};
 	}
 
-// move game piece from home position to starting board position, and set home position to empty
-function homeToStart(){
-	if(dice.innerHTML === "6"){
-			if(turn % 2 === 0){
-				boardPosition.eq(0).append(bluePiece);
-				homeBlue.innerHTML = "";
-					}
-			else if(turn % 2 !== 0){
-				boardPosition.eq(0).append(greenPiece);
-				homeGreen.innerHTML = "";
-					}	
-				}
-			}	
-
-function nearFinish() {
-	
-	if(bluePositionValue === 23 || greenPositionValue === 23){
-		if(dieValue === 6){
-			alert("You must land exactly at the safe house!");
-		}
-		else if(dieValue === 5 || dieValue === 4 || dieValue === 3 || dieValue === 2 || dieValue === 1){
-			moveForward();
-		}
-	};
-
-	if(bluePositionValue === 24 || greenPositionValue === 24){
-		if (dieValue === 5 || dieValue === 6){
-			alert("You must land exactly at the safe house!");
-		}
-		else if(dieValue === 4 || dieValue === 3 || dieValue === 2 || dieValue === 1){
-			moveForward();
-		}
-	};
-
-	if(bluePositionValue === 25 || greenPositionValue === 25){
-		if (dieValue === 4 || dieValue === 5 || dieValue === 6){
-			alert("You must land exactly at the safe house!");
-		}
-		else if(dieValue === 3 || dieValue === 2 || dieValue === 1){
-			moveForward();
-		}
-	};
-
-	if(bluePositionValue === 26 || greenPositionValue === 26){
-		if (dieValue === 3 || dieValue === 4 || dieValue === 5 || dieValue === 6){
-			alert("You must land exactly at the safe house!");
-		}
-		else if(dieValue === 2 || dieValue === 1){
-			moveForward();
-		}
-	};
-
-	if(bluePositionValue === 27 || greenPositionValue === 27){
-		if (dieValue === 2 || dieValue === 3 || dieValue === 4 || dieValue === 5 || dieValue === 6){
-			alert("You must land exactly at the safe house!");
-		}
-		else if(dieValue === 1){
-			moveForward();
-		}
-	};
-}
-
 // move forward function takes the number rolled and adds it to the data-id value of the parent of the gamepiece.  
 // This value is equal to the data-id of where the gamepiece is being appended
-
-function moveForward() {
-		console.log('moveForward')
-	if(turn % 2 === 0){
-		boardPosition.eq(blueMove).append(bluePiece);
-		}
-		else if(turn % 2 !== 0){
+function moveForward(move, piece) {
+	console.log('moveForward');
+	/*if(turn % 2 === 0){
+		blueMove += dieValue;
+		boardPosition.eq(blueMove).append(bluePiece); //moves bluePiece to boardPostion after die roll
+	}
+	else if(turn % 2 !== 0){
+		greenMove += dieValue;
 		boardPosition.eq(greenMove).append(greenPiece);
-		}
-		backToStart();
-		winner();
-		nearFinish();
-	}
+	}*/
+	boardPosition.eq(move).append(piece);
+	backToStart();
+	winner();
+}
 // the backToStartfunction sends gamepiece back to the start if it is 'landed on' by opposing gamepiece
-	function backToStart() {
-		if(turn % 2 === 0){
+function backToStart() {
+	if(turn % 2 === 0){
+		if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
+			$(homeBlue).append(bluePiece);
+			alert(inputPlayer2 + " you have been bounced back to jail!");
+		}
+	}
+		else if(turn % 2 !== 0){
 			if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
-				$(homeGreen).append(greenPiece);
-				alert(inputPlayer2 + " you have been bounced back to the home position!");
-			}
+			$(homeGreen).append(greenPiece);
+			alert(inputPlayer1 + " you have been bounced back to jail!");
 		}
-			else if(turn % 2 !== 0){
-				if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
-				$(homeBlue).append(bluePiece);
-				alert(inputPlayer1 + " you have been bounced back to the starting position!");
-			}
-		}
-
 	}
 
-	function winner () {
+}
+
+function winner () {
 		if (bluePiece.parent().attr('data-id') === "28"){
 			alert(inputPlayer1 + " Wins! Press Okay to start a new game.")
 			location.reload();

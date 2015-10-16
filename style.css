@@ -192,6 +192,13 @@ img {
 
 }
 
+#slot0{
+	background-color: white;
+}
+#slot28{
+	background-color: yellow;
+}
+
 /*button {
 	font-size: 50px;
 	width:300px;
