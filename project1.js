@@ -149,12 +149,12 @@ function backToStart() {
 			$(homeBlue).append(bluePiece);
 			alert("You've been busted and brought back to jail!");
 	}
-	if(cop.parent().attr('data-id') === greenPiece.parent().attr('data-id')){
+	else if(cop.parent().attr('data-id') === greenPiece.parent().attr('data-id')){
 			$(homeGreen).append(greenPiece);
 			alert("You've been busted and brought back to jail!");
 	}
 
-	if(turn % 2 === 0){
+	else if(turn % 2 === 0){
 		if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
 			$(homeBlue).append(bluePiece);
 			alert("You were ratted out and sent back to jail!");
@@ -170,11 +170,11 @@ function backToStart() {
 
 function winner () {
 		if (bluePiece.parent().attr('data-id') === "28"){
-			alert(inputPlayer1 + " Wins! Press Okay to start a new game.")
+			alert(inputPlayer1.value + " Wins! Press Okay to start a new game.")
 			location.reload();
 		}
 		else if(greenPiece.parent().attr('data-id') === "28"){
-			alert(inputPlayer2 + " Wins! Press okay to start a new game")
+			alert(inputPlayer2.value + " Wins! Press okay to start a new game")
 			location.reload();
 		}
 	}
