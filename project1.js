@@ -7,7 +7,6 @@ var turn = 1;
 var bluePiece = $("[data-id = 'blue']");
 var greenPiece = $("[data-id = 'green']");
 var cop = $("[data-id = 'cop']");
-var copPosition = Math.floor((Math.random()) * 27);
 var homeBlue = document.querySelector('.home-blue');
 var homeGreen = document.querySelector('.home-green');
 var homeCop = document.querySelector('.home-cop');
@@ -65,15 +64,18 @@ $('.instruction-modal').hide();
         player2.innerHTML = inputPlayer2.value;
         whosMove.innerHTML = inputPlayer1.value + " is up!";
         trackContainer.fadeIn(1000);
-    })
+
+    	setInterval(function(){
+    		var copPosition = Math.floor((Math.random()) * 27);
+			boardPosition.eq(copPosition).append(cop);
+  		}, 1000);
+  	})
 
 
 // function created to show roll of dice 1-6 when pressed, movement around board is based on the roll of the dice
 dice.addEventListener('click', function(){
 	dice.innerHTML = 1 + Math.floor(Math.random() * 6);
 	dieValue = parseInt(dice.innerHTML, 10);
-	// blueMove = Number(bluePiece.parent().attr('data-id')) + dieValue;
-	// greenMove = Number(greenPiece.parent().attr('data-id')) + dieValue;
 	playerTurn();	
 
 	if (turn % 2 === 0){
@@ -83,13 +85,14 @@ dice.addEventListener('click', function(){
 			if(dieValue === 6){
 				//dice has to equal 6 before we move smiley
 				boardPosition.eq(0).append(greenPiece);
-				homeGreen.innerHTML = "";			
+				homeGreen.innerHTML = "";
+				backToStart();			
 			}
 		} else {
 			// smiley's not home
 			greenMove = Number(greenPiece.parent().attr('data-id')) + dieValue;
 			if (greenMove > boardPosition.length){
-				alert("You must land exactly at the safe house!");
+				// alert("You must land exactly at the safe house!"); 
 			} else {
 				moveForward(greenMove, greenPiece);
 			}
@@ -100,23 +103,21 @@ dice.addEventListener('click', function(){
 			//frownie's home
 			if(dieValue === 6){
 				boardPosition.eq(0).append(bluePiece);
-				homeBlue.innerHTML = "";	
+				homeBlue.innerHTML = "";
+				backToStart();
 			}
 		} else {
 			//frownie's not home
 			blueMove = Number(bluePiece.parent().attr('data-id')) + dieValue;
 			if (blueMove > boardPosition.length){
-				alert("You must land exactly at the safe house!");
+				// alert("You must land exactly at the safe house!");
 			} else {
 				moveForward(blueMove, bluePiece);
 			}
 		}
 	};
 });
-// 	setInterval(function(){
-// 	boardPosition.eq(copPosition).append(cop);
-//   }, 1000);
-	
+
 
 
 
@@ -138,34 +139,33 @@ function playerTurn() {
 // This value is equal to the data-id of where the gamepiece is being appended
 function moveForward(move, piece) {
 	console.log('moveForward');
-	/*if(turn % 2 === 0){
-		blueMove += dieValue;
-		boardPosition.eq(blueMove).append(bluePiece); //moves bluePiece to boardPostion after die roll
-	}
-	else if(turn % 2 !== 0){
-		greenMove += dieValue;
-		boardPosition.eq(greenMove).append(greenPiece);
-	}*/
 	boardPosition.eq(move).append(piece);
-	backToStart();
-	winner();
+	winner();	
 }
-// the backToStartfunction sends gamepiece back to the start if it is 'landed on' by opposing gamepiece
+// the backToStartfunction sends gamepiece back to the start if it is 'landed on' by opposing gamepiece or floating cop piece
 function backToStart() {
 	if(turn % 2 === 0){
 		if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
 			$(homeBlue).append(bluePiece);
-			alert("You've been taken back to jail!");
+			alert("You were ratted out and sent back to jail!");
+		}
+		if(cop.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
+			$(homeGreen).append(greenPiece);
+			alert("You've been busted and brought back to jail!");
 		}
 	}
-		else if(turn % 2 !== 0){
+	else if(turn % 2 !== 0){
 			if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
 			$(homeGreen).append(greenPiece);
-			alert("You've been taken back to jail!");
+			alert("You were ratted out and sent back to jail!");
 		}
-	}
+		if(cop.parent().attr('data-id') === greenPiece.parent().attr('data-id')){
+			$(homeBlue).append(bluePiece);
+			alert("You've been busted and brought back to jail!");
+		}
 
-}
+		}
+	}	
 
 function winner () {
 		if (bluePiece.parent().attr('data-id') === "28"){
