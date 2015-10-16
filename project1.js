@@ -155,13 +155,13 @@ function backToStart() {
 	if(turn % 2 === 0){
 		if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
 			$(homeBlue).append(bluePiece);
-			alert(inputPlayer2 + " you have been bounced back to jail!");
+			alert("You've been taken back to jail!");
 		}
 	}
 		else if(turn % 2 !== 0){
 			if(greenPiece.parent().attr('data-id') === bluePiece.parent().attr('data-id')){
 			$(homeGreen).append(greenPiece);
-			alert(inputPlayer1 + " you have been bounced back to jail!");
+			alert("You've been taken back to jail!");
 		}
 	}
 
