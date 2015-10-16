@@ -27,22 +27,22 @@ var inputPlayer2 = document.querySelector('.input-player-2');
 
 
 // boardLayout function is used to set up the board in a circle.  Each board-position element is given a position relative to the center point
-function boardLayout() {
-    var radius = 250;
-    var angle = 86.5;
-    var step = (2*Math.PI) / boardPosition.length;
-    boardPosition.each(function() {
-        var x = Math.round(width/2 + radius * Math.cos(angle) - $(this).width()/2);
-        var y = Math.round(height/2 + radius * Math.sin(angle) - $(this).height()/2);
+// function boardLayout() {
+//     var radius = 250;
+//     var angle = 86.5;
+//     var step = (2*Math.PI) / boardPosition.length;
+//     boardPosition.each(function() {
+//         var x = Math.round(width/2 + radius * Math.cos(angle) - $(this).width()/2);
+//         var y = Math.round(height/2 + radius * Math.sin(angle) - $(this).height()/2);
        
-        $(this).css({
-            left: x + 'px',
-            top: y + 'px'
-        });
-        angle += step;
-    });
-}
-boardLayout();
+//         $(this).css({
+//             left: x + 'px',
+//             top: y + 'px'
+//         });
+//         angle += step;
+//     });
+// }
+// boardLayout();
 
 
 $('.modal').hide();
