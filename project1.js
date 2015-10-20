@@ -63,12 +63,12 @@ $('.instruction-modal').hide();
         player1.innerHTML = inputPlayer1.value;
         player2.innerHTML = inputPlayer2.value;
         whosMove.innerHTML = inputPlayer1.value + " its your turn!";
-        trackContainer.fadeIn(3000);
+        trackContainer.fadeIn(1000);
 
     	setInterval(function(){
     		var copPosition = Math.floor((Math.random()) * 27);
 			boardPosition.eq(copPosition).append(cop);
-  		}, 1000);
+  		}, 3000);
   	})
 
 

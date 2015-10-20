@@ -103,7 +103,7 @@
 
 .player1 {
 	position: absolute;
-	left:50px;
+	left:25px;
 	top: 45px;
 	font-size:28px;
 	color:black;
@@ -112,7 +112,7 @@
 
 .player2 {
 	position: absolute;
-	right:50px;
+	right:25px;
 	top: 45px;
 	font-size:28px;
 	color:black;
@@ -151,7 +151,7 @@
 	margin: 0 auto;
 	position: absolute;
 	left: 340px; 
-	top: 40px;
+	top: 28px;
 	font-size: 60px;
 	text-align: center;
 }
